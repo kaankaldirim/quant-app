@@ -13,7 +13,7 @@ export default function Home() {
     const [activeModal, setActiveModal] = useState<string | null>(null);
 
     return (
-        <div className="h-screen flex flex-col font-sans overflow-hidden bg-transparent">
+        <div className="flex flex-col font-sans min-h-screen md:h-screen md:overflow-hidden bg-transparent">
 
             {/* MODALS */}
             <Modal
@@ -33,29 +33,29 @@ export default function Home() {
                 <PortfolioOptimizer />
             </Modal>
 
-            <header className="shrink-0 max-w-7xl mx-auto w-full p-6 pb-2 flex justify-between items-center z-50">
+            <header className="shrink-0 max-w-7xl mx-auto w-full p-4 md:p-6 pb-2 flex flex-col md:flex-row justify-between items-center z-50 gap-4">
                 <div>
-                    <h1 className="text-3xl font-bold tracking-tight text-white flex items-center gap-3">
+                    <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-white flex items-center gap-3 justify-center md:justify-start">
                         <div className="w-2 h-8 bg-gradient-to-b from-neon-cyan to-neon-blue rounded-full" />
                         KAAN KALDIRIM
                     </h1>
-                    <p className="text-sm text-neon-cyan/80 font-mono tracking-widest mt-1 ml-5">MAKRO STRATEJİ MASASI v3.2</p>
+                    <p className="text-xs md:text-sm text-neon-cyan/80 font-mono tracking-widest mt-1 ml-5 text-center md:text-left">MAKRO STRATEJİ MASASI v3.2</p>
                 </div>
                 <div className="flex gap-4">
-                    <div className="px-4 py-1.5 rounded-full bg-glass-surface border border-glass-border text-xs font-mono text-neon-green flex items-center gap-2">
+                    <div className="px-3 py-1.5 rounded-full bg-glass-surface border border-glass-border text-[10px] md:text-xs font-mono text-neon-green flex items-center gap-2">
                         <div className="w-1.5 h-1.5 rounded-full bg-neon-green animate-pulse" />
                         SİSTEM AKTİF
                     </div>
-                    <div className="px-4 py-1.5 rounded-full bg-glass-surface border border-glass-border text-xs font-mono text-text-muted">
+                    <div className="px-3 py-1.5 rounded-full bg-glass-surface border border-glass-border text-[10px] md:text-xs font-mono text-text-muted">
                         OCAK_26_VADELİ
                     </div>
                 </div>
             </header>
 
-            <main className="flex-1 max-w-7xl mx-auto w-full p-6 pt-4 grid grid-cols-1 md:grid-cols-12 gap-6 min-h-0">
+            <main className="flex-1 max-w-7xl mx-auto w-full p-4 md:p-6 pt-4 grid grid-cols-1 md:grid-cols-12 gap-6 md:min-h-0">
 
                 {/* SOL KOLON: SENARYO & RİSK */}
-                <div className="md:col-span-5 flex flex-col gap-6 h-full overflow-y-auto pr-2 custom-scrollbar pb-6">
+                <div className="md:col-span-5 flex flex-col gap-6 md:h-full md:overflow-y-auto pr-0 md:pr-2 custom-scrollbar pb-6">
                     <ScenarioPlanner />
 
                     <GlassCard title="Risk Kontrol (Drawdown Protokolü)">
@@ -81,8 +81,8 @@ export default function Home() {
                 </div>
 
                 {/* SAĞ KOLON: TAKTİKSEL ALFA MASASI */}
-                <div className="md:col-span-7 flex flex-col gap-6 h-full min-h-0 pb-6">
-                    <GlassCard title="Taktiksel Alfa Masası (2H)" subtitle="Aktif Pair Trade & Rotasyonlar" className="flex flex-col flex-1 min-h-0 overflow-hidden">
+                <div className="md:col-span-7 flex flex-col gap-6 md:h-full md:min-h-0 pb-6">
+                    <GlassCard title="Taktiksel Alfa Masası (2H)" subtitle="Aktif Pair Trade & Rotasyonlar" className="flex flex-col h-[500px] md:h-auto md:flex-1 md:min-h-0 overflow-hidden">
                         <div className="p-3 mb-6 rounded bg-neon-purple/10 border-l-2 border-neon-purple text-xs text-text-muted shrink-0">
                             <strong className="text-neon-purple block mb-1">SERMAYE GERİ DÖNÜŞÜMÜ:</strong>
                             Momentum (Teknoloji) kârları realize edilip Derin Değer (KOBİ) hisselerine aktarılıyor. Verim eğrisi dikleşme stratejisi aktif.
