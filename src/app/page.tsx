@@ -13,7 +13,7 @@ export default function Home() {
     const [activeModal, setActiveModal] = useState<string | null>(null);
 
     return (
-        <div className="h-screen flex flex-col font-sans overflow-hidden bg-bg-deep">
+        <div className="h-screen flex flex-col font-sans overflow-hidden bg-transparent">
 
             {/* MODALS */}
             <Modal

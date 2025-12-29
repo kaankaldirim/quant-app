@@ -34,11 +34,13 @@
 }
 
 body {
-  background-color: var(--bg-deep);
+  background-color: #020617;
   color: var(--text-main);
   background-image:
-    radial-gradient(circle at 10% 10%, rgba(6, 182, 212, 0.08), transparent 40%),
-    radial-gradient(circle at 90% 90%, rgba(59, 130, 246, 0.08), transparent 40%);
+    radial-gradient(circle at 50% -20%, rgba(59, 130, 246, 0.15), transparent 40%),
+    radial-gradient(circle at 0% 40%, rgba(6, 182, 212, 0.08), transparent 40%),
+    radial-gradient(circle at 100% 60%, rgba(139, 92, 246, 0.08), transparent 40%),
+    radial-gradient(circle at 50% 120%, rgba(16, 185, 129, 0.05), transparent 40%);
   min-height: 100vh;
 }
 
