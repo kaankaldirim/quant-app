@@ -23,10 +23,6 @@ class IBKRService {
             this.isConnected = true;
         });
 
-        this.ib.on(EventName.clientError, (err: Error) => {
-            console.error("IBKR Client Error:", err.message);
-        });
-
         // Listen for price updates
         this.ib.on(EventName.tickPrice, (reqId, field, value) => {
             // Field 4 = Last Price, Field 9 = Close Price
@@ -80,7 +76,7 @@ class IBKRService {
 
         const contract: Contract = {
             symbol: ticker,
-            secType: "STK",
+            secType: "STK" as any, // Cast to any to avoid strict union type mismatch with library version
             exchange: "SMART",
             currency: "USD",
         };
