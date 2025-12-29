@@ -58,16 +58,60 @@ export function ScenarioPlanner() {
                     transition={{ duration: 0.2 }}
                     className="space-y-6"
                 >
-                    <div className="p-6 rounded-xl bg-black/40 border border-glass-border">
-                        <h4 className="text-xs text-text-muted uppercase tracking-widest mb-3 flex items-center gap-2">
-                            <div className={cn("w-2 h-2 rounded-full", scenario === "GOLDILOCKS" ? "bg-neon-green" : "bg-neon-red")} />
-                            müşteri_aksiyon_protokolü.exe
-                        </h4>
-                        <p className="text-2xl font-mono text-white leading-relaxed">
-                            {scenario === "GOLDILOCKS"
-                                ? "TEKNOLOJİ (TECH) AĞIRLIĞINI KORU. DURASYON (TLT) EKLE. HEDGE (KORUMA) YOK."
-                                : "ACİL ROTASYON: S&P 500 SAT. ENERJİ (XLE) & TIPS (ENFLASYON KORUMALI) AL."}
-                        </p>
+                    <div className="bg-black/40 border border-white/10 rounded-lg overflow-hidden relative group">
+                        {/* Terminal Header */}
+                        <div className="bg-white/5 px-4 py-2 border-b border-white/5 flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                                <div className={cn("w-2 h-2 rounded-full animate-pulse", scenario === "GOLDILOCKS" ? "bg-neon-green" : "bg-neon-red")} />
+                                <span className={cn("text-[10px] font-mono tracking-widest uppercase", scenario === "GOLDILOCKS" ? "text-neon-green" : "text-neon-red")}>
+                                    İşlem_Protokolü_v3.1.exe
+                                </span>
+                            </div>
+                            <div className="text-[10px] text-text-muted font-mono">SYSTEM_ACTIVE</div>
+                        </div>
+
+                        {/* Content */}
+                        <div className="p-5 relative">
+                            <div className={cn("absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none", scenario === "GOLDILOCKS" ? "bg-neon-blue/5" : "bg-neon-red/5")} />
+
+                            <div className="space-y-4 relative z-10">
+                                <div className="flex items-start gap-3">
+                                    <div className="mt-1 w-1.5 h-1.5 bg-neon-cyan rounded-sm shrink-0" />
+                                    <div>
+                                        <div className="text-xs text-neon-cyan font-bold tracking-wider mb-0.5">HİSSE SENETLERİ</div>
+                                        <div className="text-sm text-white font-medium">
+                                            {scenario === "GOLDILOCKS"
+                                                ? "Teknoloji (Tech) Ağırlığını Koru & Arttır."
+                                                : "ACİL ROTASYON: S&P 500 & Nasdaq Pozisyonlarını Azalt."}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-3">
+                                    <div className="mt-1 w-1.5 h-1.5 bg-neon-purple rounded-sm shrink-0" />
+                                    <div>
+                                        <div className="text-xs text-neon-purple font-bold tracking-wider mb-0.5">SABİT GETİRİ</div>
+                                        <div className="text-sm text-white font-medium">
+                                            {scenario === "GOLDILOCKS"
+                                                ? "Portföye Durasyon (TLT) Ekle."
+                                                : "TIPS (Enflasyon Korumalı) Tahvillere Geç."}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-3">
+                                    <div className="mt-1 w-1.5 h-1.5 bg-neon-red rounded-sm shrink-0" />
+                                    <div>
+                                        <div className="text-xs text-neon-red font-bold tracking-wider mb-0.5">TÜREV ARAÇLAR</div>
+                                        <div className="text-sm text-white font-medium opacity-80">
+                                            {scenario === "GOLDILOCKS"
+                                                ? "Hedge (Koruma) Devre Dışı / Risk Açık."
+                                                : "VIX Call Opsiyonları ile Tam Koruma Başlat."}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
