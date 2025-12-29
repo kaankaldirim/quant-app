@@ -26,7 +26,7 @@ export async function GET(request: Request) {
             return { ticker, data };
         } catch (error) {
             console.error(`Error fetching ${ticker}:`, error);
-            return null;
+            return { ticker, data: null };
         }
     });
 
@@ -43,7 +43,7 @@ export async function GET(request: Request) {
                 change: `${isPositive ? "+" : ""}${dp.toFixed(2)}%`,
                 color: isPositive ? "green" : "red",
             };
-        } else {
+        } else if (result) {
             // Fallback for error/rate limit
             data[result.ticker] = {
                 price: "---",
