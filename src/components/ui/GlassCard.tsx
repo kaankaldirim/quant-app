@@ -12,7 +12,7 @@ export function GlassCard({ children, className, title, subtitle }: GlassCardPro
     return (
         <div
             className={cn(
-                "rounded-xl border border-glass-border bg-glass-surface backdrop-blur-md p-6 shadow-2xl relative overflow-hidden",
+                "rounded-xl border border-glass-border bg-glass-surface backdrop-blur-md p-6 shadow-2xl relative",
                 className
             )}
         >
@@ -31,7 +31,7 @@ export function GlassCard({ children, className, title, subtitle }: GlassCardPro
                 </div>
             )}
 
-            <div className="relative z-10">{children}</div>
+            <div className="relative z-10 flex-1 flex flex-col min-h-0">{children}</div>
         </div>
     );
 }
