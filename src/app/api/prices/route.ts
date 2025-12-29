@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { ibkr } from "@/lib/ibkr";
+
+const API_KEY = "d3susa1r01qpdd5lg6ggd3susa1r01qpdd5lg6h0";
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
@@ -11,31 +12,42 @@ export async function GET(request: Request) {
 
     const tickers = tickersParam.split(",");
 
-    // Ensure connection
-    await ibkr.connect();
+    // Fetch data in parallel from Finnhub
+    const promises = tickers.map(async (ticker) => {
+        try {
+            const res = await fetch(`https://finnhub.io/api/v1/quote?symbol=${ticker}&token=${API_KEY}`, {
+                next: { revalidate: 10 } // Cache for 10 seconds to avoid rate limits
+            });
 
+            if (!res.ok) return null;
+
+            const data = await res.json();
+            // Finnhub response: { c: current, d: change, dp: percent change, h: high, l: low, o: open, pc: prev close }
+            return { ticker, data };
+        } catch (error) {
+            console.error(`Error fetching ${ticker}:`, error);
+            return null;
+        }
+    });
+
+    const results = await Promise.all(promises);
     const data: Record<string, { price: string; change: string; color: "green" | "red" }> = {};
 
-    tickers.forEach((ticker) => {
-        const marketData = ibkr.getMarketData(ticker);
+    results.forEach((result) => {
+        if (result && result.data && result.data.c) {
+            const { c, dp } = result.data;
+            const isPositive = dp >= 0;
 
-        if (marketData && marketData.price > 0) {
-            const changeVal = marketData.price - marketData.close;
-            const changePercent = ((changeVal / marketData.close) * 100).toFixed(2);
-            const isPositive = changeVal >= 0;
-
-            data[ticker] = {
-                price: marketData.price.toFixed(2),
-                change: `${isPositive ? "+" : ""}${changePercent}%`,
+            data[result.ticker] = {
+                price: c.toFixed(2),
+                change: `${isPositive ? "+" : ""}${dp.toFixed(2)}%`,
                 color: isPositive ? "green" : "red",
             };
         } else {
-            // Fallback/Loading state: return null or previous dummy if strictly needed, 
-            // but here we return null to let frontend show "Loading..."
-            // Or better: return the dummy data structure but with empty values
-            data[ticker] = {
-                price: "...",
-                change: "...",
+            // Fallback for error/rate limit
+            data[result.ticker] = {
+                price: "---",
+                change: "---",
                 color: "green"
             };
         }

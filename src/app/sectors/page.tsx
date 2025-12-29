@@ -89,7 +89,7 @@ export default function SectorsPage() {
                         className="px-4 py-2 rounded-full bg-glass-surface border border-glass-border text-xs font-mono text-neon-cyan hover:bg-white/10 transition-colors flex items-center gap-2"
                     >
                         <div className={`w-1.5 h-1.5 rounded-full bg-neon-cyan ${loading ? 'animate-ping' : ''}`} />
-                        {loading ? 'TWS_BAĞLANIYOR...' : 'SNAPSHOT_YENİLE (IBKR)'}
+                        {loading ? 'YÜKLENİYOR...' : 'YENİLE (API)'}
                     </button>
                 </div>
             </header>
